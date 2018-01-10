@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
-import Head from 'next/head'
-import Page from '../layouts/main'
-import _ from 'lodash'
+import Head from 'next/head';
+import { Router } from '../routes';
+import _ from 'lodash';
+import dynamic from 'next/dynamic';
+
+import Page from '../layouts/main';
+import { TOTAL_SKETCHES } from '../constants';
+
+const P5Wrapper = dynamic(import('react-p5-wrapper'), {
+  ssr: false,
+  loading: () => <div>Loading...</div>,
+});
 
 class IndexPage extends Component {
 
-  // dynamically load sketches d1, d2, d3, ...
-  TOTAL_SKETCHES = 2
 
-  render() { 
-    let sketchComponents = <div>Loading</div>
-    if (typeof(window) !== 'undefined') {       
-      const P5Wrapper = require('react-p5-wrapper')
-
-      sketchComponents = (
-        <div>
-          {_.range(1, this.TOTAL_SKETCHES+1).map(ind => {
-            const sketch = require(`../sketches/d${ind}`).default
-            return (
-              <div className="sketch-container">
-                <P5Wrapper sketch={sketch(200, 300)}/>
-              </div>
-            )
-          })}
-          <style jsx>{`
+  renderSketchList = () => {
+    return (
+      <div>
+        {_.range(1, TOTAL_SKETCHES+1).map(ind => {
+          const sketch = require(`../sketches/d${ind}`).default;
+          return (
+            <div key={`sketch-${ind}`} className="sketch-container">
+              <a onClick={() => Router.pushRoute(`/s/${ind}`) }>Full {ind}</a>
+              <P5Wrapper sketch={sketch(200, 300)}/>              
+            </div>
+          )
+        })}
+        <style jsx>{`
           .sketch-container {
             border-color: blue;
             border-style: solid;
@@ -31,20 +35,22 @@ class IndexPage extends Component {
             overflow: hidden;
             padding: 10px;
           }
-        `}</style>
-        </div>)
-    }
-
+      `}</style>
+      </div>);
+  }
+  
+  render() { 
     return (
       <Page>
         <Head>
-          <title>daily p5</title>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js" />
+          <title>daily p5</title>          
         </Head>
-        <div>Home</div>
-        {sketchComponents}
+        <div>
+          <h2>Sketches</h2>
+          {this.renderSketchList()}
+        </div>
       </Page>
-    )
+    );
   }
 }
  

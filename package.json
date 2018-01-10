@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "PORT=3000 node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production PORT=3003 node server.js"
   },
   "author": "aunnnn",
   "license": "MIT",
   "dependencies": {
-    "next": "^3.2.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "next": "^4.0.1",
+    "next-routes": "^1.1.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-p5-wrapper": "0.0.4"
   }
 }

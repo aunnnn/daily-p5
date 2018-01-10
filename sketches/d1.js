@@ -21,6 +21,6 @@ export default (w, h) => (p) => {
     }
     p.rect(p.mouseX, p.mouseY, 20, 20)
     p.textSize(12)
-    p.text('A template for making p5.js apps\n\nSec:'+p.second(), 0, kH/2)
+    p.text('A template for making p5.js apps!!!\n\nSec:'+p.second(), 0, kH/2)
   } 
 }
