@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import dynamic from 'next/dynamic';
-import PropTypes from 'prop-types';
-
 
 const P5Wrapper = dynamic(import('react-p5-wrapper'), {
   loading: () => <p>Loading...</p>,
@@ -39,10 +37,6 @@ class P5Page extends Component {
       </div>
     );
   }
-}
-
-P5Page.propTypes = {
-
 }
 
 export default P5Page;
