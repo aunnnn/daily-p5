@@ -35,7 +35,14 @@ class P5Page extends Component {
     return (
       <div>
         <Meta />
-        {this.renderP5(this.props.sketchId)}
+        <div className="container">
+          {this.renderP5(this.props.sketchId)}
+        </div>
+        <style jsx>{`
+          .container {
+            margin: 8px;
+          }
+        `}</style>
       </div>
     );
   }

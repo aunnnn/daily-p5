@@ -14,31 +14,6 @@ const P5Wrapper = dynamic(import('react-p5-wrapper'), {
 
 class IndexPage extends Component {
 
-
-  renderSketchList = () => {
-    return (
-      <div>
-        {_.range(1, TOTAL_SKETCHES+1).map(ind => {
-          const sketch = require(`../sketches/d${ind}`).default;
-          return (
-            <div key={`sketch-${ind}`} className="sketch-container">
-              <a className="primary-button" onClick={() => Router.pushRoute(`/s/${ind}`) }>Full {ind}</a>
-              <P5Wrapper sketch={sketch(200, 300)}/>
-            </div>
-          )
-        })}
-        <style jsx>{`
-          .sketch-container {
-            border-color: blue;
-            border-style: solid;
-            display: inline-block;
-            overflow: hidden;
-            padding: 10px;
-          }
-      `}</style>
-      </div>);
-  }
-  
   render() { 
     return (
       <Page>
@@ -47,8 +22,27 @@ class IndexPage extends Component {
         </Head>
         <div>
           <h2>Sketches</h2>
-          {this.renderSketchList()}
+          <div>
+            {_.range(1, TOTAL_SKETCHES+1).map(ind => {
+              const sketch = require(`../sketches/d${ind}`).default;
+              return (
+                <div key={`sketch-${ind}`} className="sketch-container">
+                  <P5Wrapper sketch={sketch(200, 200)}/>
+                  <a className="primary-button" onClick={() => Router.pushRoute(`/s/${ind}`) }>View {ind} full</a>
+                </div>
+              )
+            })}
+          </div>
         </div>
+        <style jsx>{`
+          .sketch-container {
+            border-color: blue;
+            border-style: solid;
+            display: inline-block;
+            overflow: hidden;
+            padding: 8px;
+          }
+        `}</style>
       </Page>
     );
   }
