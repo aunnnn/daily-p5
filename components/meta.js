@@ -16,14 +16,6 @@ export default () => (
     body {
       font: 16px Verdana;
     }
-    
-    a {
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: blue;
-    }
 
     .primary-button {
       display: inline-block !important;

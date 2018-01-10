@@ -22,8 +22,8 @@ class IndexPage extends Component {
           const sketch = require(`../sketches/d${ind}`).default;
           return (
             <div key={`sketch-${ind}`} className="sketch-container">
-              <a onClick={() => Router.pushRoute(`/s/${ind}`) }>Full {ind}</a>
-              <P5Wrapper sketch={sketch(200, 300)}/>              
+              <a className="primary-button" onClick={() => Router.pushRoute(`/s/${ind}`) }>Full {ind}</a>
+              <P5Wrapper sketch={sketch(200, 300)}/>
             </div>
           )
         })}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Link from 'next/link'
-import Meta from '../components/meta'
+import Link from 'next/link';
+import Meta from '../components/meta';
 
 export default ({ children }) => (
   <div className="main">
@@ -27,12 +27,12 @@ export default ({ children }) => (
         color: black;
       }
 
-      a {
+      .logo a {
         text-decoration: none;
         font-size: 2em;
       }
 
-      a:active {
+      .logo a:active {
         color: black;
       }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dynamic from 'next/dynamic';
+import Meta from '../components/meta';
 
 const P5Wrapper = dynamic(import('react-p5-wrapper'), {
   loading: () => <p>Loading...</p>,
@@ -32,7 +33,8 @@ class P5Page extends Component {
 
   render() {    
     return (
-      <div>      
+      <div>
+        <Meta />
         {this.renderP5(this.props.sketchId)}
       </div>
     );
