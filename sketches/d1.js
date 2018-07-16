@@ -13,14 +13,15 @@ export default (w, h) => (p) => {
   }
 
   p.draw = () => {
-    p.background(200)
+    p.background(220)
     if (p.mouseIsPressed) {
       p.fill(100,0,0)
     } else {
-      p.fill(0,0,100)
+      p.fill(0,20,100)
     }
     p.rect(p.mouseX, p.mouseY, 20, 20)
-    p.textSize(12)
-    p.text('A template for making p5.js apps!!!\n\nSec:'+p.second(), 0, kH/2)
+    p.textSize(16)
+
+    p.text('A template forrr making p5.js apps!!!\n\nSec:'+p.second(), 0, kH/2)
   } 
 }

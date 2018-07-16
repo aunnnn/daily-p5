@@ -3,9 +3,8 @@ import Head from 'next/head';
 import { Router } from '../routes';
 import _ from 'lodash';
 import dynamic from 'next/dynamic';
-
+import fetch from 'isomorphic-unfetch';
 import Page from '../layouts/main';
-import { TOTAL_SKETCHES } from '../constants';
 
 const P5Wrapper = dynamic(import('react-p5-wrapper'), {
   ssr: false,
@@ -14,7 +13,16 @@ const P5Wrapper = dynamic(import('react-p5-wrapper'), {
 
 class IndexPage extends Component {
 
+  static async getInitialProps(ctx) {
+    const res = await fetch('http://localhost:3000/sketchesCount')
+    const data = await res.json()
+    return {
+      sketchesCount: data.sketchesCount,
+    };
+  }
+
   render() { 
+    const TOTAL_SKETCHES = this.props.sketchesCount
     return (
       <Page>
         <Head>
