@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import Meta from '../components/meta';
 
 export default ({ children }) => (
   <div className="main">
@@ -9,9 +8,6 @@ export default ({ children }) => (
     </div>
 
     { children }
-
-    { /* global styles and meta tags */ }
-    <Meta />
 
     { /* local styles */ }
     <style jsx>{`

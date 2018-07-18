@@ -1,42 +1,41 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import { Router } from '../routes';
-import _ from 'lodash';
 import dynamic from 'next/dynamic';
-import fetch from 'isomorphic-unfetch';
-import Page from '../layouts/main';
+
+import '../layouts/global.css';
+import Main from '../layouts/main';
+import { Router } from '../routes';
+import { range } from '../utils/utils';
+import Const from '../utils/constants';
 
 const P5Wrapper = dynamic(import('react-p5-wrapper'), {
   ssr: false,
-  loading: () => <div>Loading...</div>,
+  loading: () => (
+    <div className="sketch-holder">Loading...</div>
+  ),
 });
 
 class IndexPage extends Component {
 
-  static async getInitialProps(ctx) {
-    const res = await fetch('http://localhost:3000/sketchesCount')
-    const data = await res.json()
-    return {
-      sketchesCount: data.sketchesCount,
-    };
-  }
-
   render() { 
-    const TOTAL_SKETCHES = this.props.sketchesCount
+    const TOTAL_SKETCHES = Const.sketchesCount
     return (
-      <Page>
+      <Main>
         <Head>
           <title>daily p5</title>          
         </Head>
         <div>
           <h2>Sketches</h2>
           <div>
-            {_.range(1, TOTAL_SKETCHES+1).map(ind => {
+            {range(TOTAL_SKETCHES).map(i => {
+              const ind = i + 1
               const sketch = require(`../sketches/d${ind}`).default;
               return (
                 <div key={`sketch-${ind}`} className="sketch-container">
-                  <P5Wrapper sketch={sketch(200, 200)}/>
-                  <a className="primary-button" onClick={() => Router.pushRoute(`/s/${ind}`) }>View {ind} full</a>
+                  <div className="sketch-holder">
+                    <P5Wrapper sketch={sketch(200, 200)}/>
+                  </div>
+                  <a className="primary-button" onClick={() => Router.pushRoute(`/s/${ind}`) }>View {ind}</a>
                 </div>
               )
             })}
@@ -44,14 +43,21 @@ class IndexPage extends Component {
         </div>
         <style jsx>{`
           .sketch-container {
-            border-color: blue;
+            border-width: 1px;
             border-style: solid;
             display: inline-block;
-            overflow: hidden;
-            padding: 8px;
+            margin: 8px;
+          }
+          .sketch-holder {
+            width: 200px;
+            height: 200px;
+            display: -webkit-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         `}</style>
-      </Page>
+      </Main>
     );
   }
 }

@@ -27,7 +27,7 @@ export default (W, H) => (p) => {
     p.background(200)
     p.textSize(12)
     p.text('A template for making p5.js apps\n\nSec:'+second(), 0, H/2)
-    p.text(`${range(10)}`, 0, H/3)
+    p.text(`range(10) = ${range(10)}`, 0, H/3)
   } 
 }
   

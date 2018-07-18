@@ -1,26 +1,104 @@
-export default (w, h) => (p) => {
-  // let PI = p.PI
-  // let PI_2 = p.HALF_PI
-  // let PI_4 = p.QUARTER_PI
-  // let TWO_PI = p.TWO_PI
-  let kW = w
-  let kH = h
+import { range } from '../utils/utils'
+import Transformer from '../utils/transformer'
+
+// draw an arrow for a vector at a given base position
+function drawArrow(base, vec, myColor) {
+  this.push();
+  this.stroke(myColor);
+  this.strokeWeight(3);
+  this.fill(myColor);
+  this.translate(base.x, base.y);
+  this.line(0, 0, vec.x, vec.y);
+  this.rotate(vec.heading());
+  var arrowSize = 7;
+  this.translate(vec.mag() - arrowSize, 0);
+  this.triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+  this.pop();
+}
+
+export default (W, H) => (p) => {
   let { 
+    // Constants
+    RADIANS,
     PI, 
-    HALF_PI = PI_2,
-    PI_4 = p.QUARTER_PI,
+    HALF_PI: PI_2,
+    QUARTER_PI: PI_4,
     TWO_PI,
-    mouseX, mouseY
+
+    // Time
+    year, month, day, hour, minute, second, millis,
   } = p
 
+  const tf = new (Transformer(p))()
+
   p.setup = () => {
-    p.createCanvas(w, h)
-    p.angleMode(p.RADIANS)
+    p.createCanvas(W, H)
+    p.angleMode(RADIANS)
   }
 
   p.draw = () => {
-    p.background(20)
-    
+    // const angle = p.abs(p.mouseX)/50
+    // const angle = -p.atan((p.mouseY - H/2)/(p.mouseX - W/2))
+    const v0 = p.createVector(1, 0)
+    const v1 = p.createVector(p.mouseX - W/2, p.mouseY - H/2)
+    let angle = -v0.angleBetween(v1).toFixed(2)
+    if (v1.y <= 0) {
+      angle = -TWO_PI-angle
+    }
+    const radius = p.dist(W/2, H/2, p.mouseX, p.mouseY) / 3
+    const freq = (n) => millis() / (1000/n)
+    const freq_2 = freq(0.5)
+    const freq1 = freq(1)
+    const freq2 = freq(2)
+
+    p.background(200)
+    p.textSize(20)
+
+    tf.push()
+
+    // Start at the center
+    tf.translate(W/2, H/2)
+    tf.rotate(freq_2*TWO_PI)
+
+    const makeHands = (baseRadius, num) => {
+      tf.push()
+      for(let _i of range(num)) {
+        const i = _i + 1 
+        const handLength = baseRadius/i
+        const gearColor = (1 - i/num) * 255
+        const handColor = i/num * 255
+        const handThickness = num/i
+        const handAngle = i % 2 == 0 ? angle*i : -angle*i
+  
+        // hand
+        p.fill(handColor)
+        tf.rotate(handAngle*i)
+        p.rect(0, -handThickness/2, handLength, handThickness)
+        // p.push()
+        // p.fill(0)
+        // p.text(`${tf.x.toFixed(1)} ${tf.y.toFixed(1)}`, 0, -handThickness)
+        // p.pop()
+        // gear
+        p.fill(gearColor)
+        p.ellipse(0,0,10, 10)
+  
+        tf.translate(handLength, 0)
+        tf.rotate(freq_2*PI/i)
+      }
+      const x = tf.x, y = tf.y
+      tf.pop()
+      return {x, y}
+    }
+    const {x,y} = makeHands(radius, 6)
+    tf.pop()
+
+    tf.push()
+    tf.translate(W/2, H/2)
+    tf.rotate(freq_2*TWO_PI + PI)
+    const {x: x2, y: y2 } = makeHands(radius, 4)
+    tf.pop()
+
+    // Connecting line using coordinates returned from 'makeHands'
+    p.line(x,y,x2,y2)
   } 
 }
-  

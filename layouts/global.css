@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Verdana;
+}
+
+.primary-button {
+  display: block;
+  width: auto;
+  background-color: blue;
+  color: white !important;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.primary-button:hover {
+  background-color: green;
+}
+
+.primary-button:disabled, 
+.primary-button[disabled] {
+  background-color: grey;
+  cursor: default;
+}

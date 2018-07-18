@@ -1,18 +1,21 @@
 {
   "name": "dailyp5",
   "version": "1.0.0",
-  "description": "",
+  "description": "Daily p5.js experimentation",
   "main": "index.js",
   "scripts": {
-    "dev": "PORT=3000 node server.js",
+    "dev": "NODE_ENV=development PORT=3000 node server.js",
+    "start": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production PORT=3003 node server.js",
-    "analyze": "cross-env ANALYZE=1 next build",
+    "export": "next build & next export",
+    "deploy": "now",
     "new-sketch": "scripts/new-sketch.sh"
   },
   "author": "aunnnn",
   "license": "MIT",
   "dependencies": {
+    "@zeit/next-css": "^0.2.0",
+    "dotenv": "^6.0.0",
     "isomorphic-unfetch": "^2.0.0",
     "next": "^6.1.1",
     "next-routes": "^1.1.0",
@@ -20,9 +23,5 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-p5-wrapper": "0.0.4"
-  },
-  "devDependencies": {
-    "cross-env": "^5.2.0",
-    "webpack-bundle-analyzer": "^2.13.1"
   }
 }
