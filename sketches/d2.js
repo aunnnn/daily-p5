@@ -1,21 +1,6 @@
 import { range } from '../utils/utils'
 import Transformer from '../utils/transformer'
 
-// draw an arrow for a vector at a given base position
-function drawArrow(base, vec, myColor) {
-  this.push();
-  this.stroke(myColor);
-  this.strokeWeight(3);
-  this.fill(myColor);
-  this.translate(base.x, base.y);
-  this.line(0, 0, vec.x, vec.y);
-  this.rotate(vec.heading());
-  var arrowSize = 7;
-  this.translate(vec.mag() - arrowSize, 0);
-  this.triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-  this.pop();
-}
-
 export default (W, H) => (p) => {
   let { 
     // Constants
