@@ -13,9 +13,8 @@ const nextConfigs = {
   },
 
   exportPathMap: async function (defaultPathMap) {
-    const sketchesCount = process.env.SKETCHES_COUNT
     const myPathMap = {}
-    const range = (n) => Array.from({length: n}, (v, k) => k);  
+    const range = (n) => Array.from({length: n}, (v, k) => k);
     for(const _i of range(sketchesCount)) {
       const i = _i+1
       myPathMap[`/s/${i}`] = {
