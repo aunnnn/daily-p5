@@ -23,6 +23,9 @@ export default (W, H) => (p) => {
     p.angleMode(RADIANS)
   }
 
+  const minY = H * 0.4, maxY = H * 0.8
+  const dividedByW = 1/W
+
   p.draw = () => {
     if (p.mouseIsPressed) {
       p.background(240)
@@ -38,7 +41,7 @@ export default (W, H) => (p) => {
     p.textSize(18)
 
     const mouseX = p.constrain(p.mouseX, 0, W)
-    const mouseY = p.constrain(p.mouseY, H * 0.14, H * 0.8)
+    const mouseY = p.constrain(p.mouseY, minY, maxY)
 
     p.line(0,mouseY,W,mouseY)
 
@@ -47,7 +50,7 @@ export default (W, H) => (p) => {
 
     let totalHeightLeft = H - mouseY
     let prevHeight = mouseY
-    let prevFirstRatio = mouseX/W
+    let prevFirstRatio = mouseX * dividedByW
 
     for (let _i = 0; _i < linesNum; _i++) {
       const level = prevHeight + totalHeightLeft/lhRatio

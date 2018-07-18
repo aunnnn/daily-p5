@@ -10,8 +10,6 @@ export default (W, H) => (p) => {
     p.angleMode(p.RADIANS)
   }
 
-  let prev = null;
-
   p.draw = () => {
     p.background(220)
 
