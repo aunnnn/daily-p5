@@ -1,8 +1,10 @@
-# next-p5-template
+# daily-p5
 
 A gallery website for making p5.js sketches built with Next.js. 
 
-Note that unlike pure p5.js where you can access draw function globally, 
+Deployed [here.](https://dailyp5.netlify.com/)
+
+NOTE: Unlike pure p5.js where you can access draw function globally, 
 you have to use variable `p` to draw. (E.g., `p.rect(...)`, `p.line(...)`, etc.)
 
 ### How to run
@@ -11,9 +13,9 @@ you have to use variable `p` to draw. (E.g., `p.rect(...)`, `p.line(...)`, etc.)
 2. `yarn dev`
 3. Go to `http://localhost:3000`
 
-### How to make new sketch
+### Make a new sketch
 
-1. `yarn new-sketch`, this will create a new js file for your sketch, e.g., `d1.js`
+1. `yarn new-sketch`, this will create a new js file for your sketch, e.g., `d1.js`, `d2.js`, ...
 2. Code!
 
 ### Navigation
