@@ -15,10 +15,10 @@ you have to use variable `p` to draw. (E.g., `p.rect(...)`, `p.line(...)`, etc.)
 
 ### Make a new sketch
 
-1. `yarn new-sketch`, this will create a new js file for your sketch, e.g., `d1.js`, `d2.js`, ...
+1. `yarn new-sketch`, it automatically creates a new js file for a sketch in the format of dn.js, e.g., `d1.js`, `d2.js`, ...
 2. Code!
 
 ### Navigation
 
 - Go to `http://localhost:3000` to view all sketches. 
-- Go to `http://localhost:3000/s/1` to view each sketch.
+- Go to `http://localhost:3000/s/1` to view `d1.js` sketch.
