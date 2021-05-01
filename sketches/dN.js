@@ -3,7 +3,7 @@ import {
   range
 } from '../utils/utils';
 
-export default (W, H) => (p) => {
+const Sketch = (W, H) => (p) => {
   let { 
     // Constants
     RADIANS,
@@ -13,7 +13,9 @@ export default (W, H) => (p) => {
     TWO_PI,
 
     // Time
-    year, month, day, hour, minute, second, millis,
+    // Not sure why when millis() is used it errors out on _millisStart. 
+    // A workaround is just to use p.millis()
+    year, month, day, hour, minute, second,
   } = p
 
   const tf = new (Transformer(p))()
@@ -30,4 +32,4 @@ export default (W, H) => (p) => {
     p.text(`${range(10)}`, 0, H/3)
   } 
 }
-  
+export default Sketch

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 
-export default ({ children }) => (
+const Main = ({ children }) => (
   <div className="main">
     <div className="logo">
       <Link prefetch href="/"><a>daily p5</a></Link>
@@ -44,3 +44,4 @@ export default ({ children }) => (
     `}</style>
   </div>
 )
+export default Main;

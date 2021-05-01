@@ -1,4 +1,4 @@
-export default (W, H) => (p) => {
+const Sketch = (W, H) => (p) => {
 
   let PI = p.PI
   let PI_2 = p.HALF_PI
@@ -27,3 +27,4 @@ export default (W, H) => (p) => {
     p.text('Hello!', 20, H/2)
   } 
 }
+export default Sketch;

@@ -3,7 +3,7 @@ import {
   range
 } from '../utils/utils';
 
-export default (W, H) => (p) => {
+const Sketch = (W, H) => (p) => {
   let { 
     // Constants
     RADIANS,
@@ -154,4 +154,4 @@ export default (W, H) => (p) => {
     drawMan(mouseX, mouseY - 80)
   } 
 }
-  
+export default Sketch

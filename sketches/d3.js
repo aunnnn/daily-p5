@@ -3,7 +3,7 @@ import {
   range
 } from '../utils/utils';
 
-export default (W, H) => (p) => {
+const Sketch = (W, H) => (p) => {
   let { 
     // Constants
     RADIANS,
@@ -80,4 +80,4 @@ export default (W, H) => (p) => {
     p.text('unknown', tx, ty)
   } 
 }
-  
+export default Sketch

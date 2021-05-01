@@ -1,7 +1,7 @@
 import { range } from '../utils/utils'
 import Transformer from '../utils/transformer'
 
-export default (W, H) => (p) => {
+const Sketch = (W, H) => (p) => {
   let { 
     // Constants
     RADIANS,
@@ -11,12 +11,12 @@ export default (W, H) => (p) => {
     TWO_PI,
 
     // Time
-    year, month, day, hour, minute, second, millis,
+    year, month, day, hour, minute, second,
   } = p
 
   const tf = new (Transformer(p))()
 
-  p.setup = () => {
+  p.setup = function() {
     p.createCanvas(W, H)
     p.angleMode(RADIANS)
   }
@@ -31,7 +31,7 @@ export default (W, H) => (p) => {
       angle = -TWO_PI-angle
     }
     const radius = p.dist(W/2, H/2, p.mouseX, p.mouseY) / 3
-    const freq = (n) => millis() / (1000/n)
+    const freq = (n) => p.millis() / (1000/n)
     const freq_2 = freq(0.5)
     const freq1 = freq(1)
     const freq2 = freq(2)
@@ -87,3 +87,4 @@ export default (W, H) => (p) => {
     p.line(x,y,x2,y2)
   } 
 }
+export default Sketch

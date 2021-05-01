@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 
-import '../layouts/global.css';
 import Main from '../layouts/main';
 import { Router } from '../routes';
 import { range } from '../utils/utils';

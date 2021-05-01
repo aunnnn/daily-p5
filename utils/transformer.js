@@ -1,5 +1,5 @@
 // Adapted from https://github.com/ChristerNilsson/Transformer
-export default (p) => class Transformer {
+const _Transformer = (p) => class Transformer {
   constructor(x, y, a, s, stack) {
     this.x = x != null ? x : 0;
     this.y = y != null ? y : 0;
@@ -35,3 +35,4 @@ export default (p) => class Transformer {
     return this.y += this.s * dy * p.cos(this.a) + this.s * dx * p.sin(this.a);
   }
 }
+export default _Transformer
