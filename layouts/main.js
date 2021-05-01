@@ -4,7 +4,7 @@ import Link from 'next/link';
 const Main = ({ children }) => (
   <div className="main">
     <div className="logo">
-      <Link prefetch href="/"><a>daily p5</a></Link>
+      <Link href="/"><a>daily p5</a></Link>
     </div>
 
     { children }
