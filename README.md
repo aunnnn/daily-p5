@@ -9,8 +9,8 @@ you have to use variable `p` to draw. (E.g., `p.rect(...)`, `p.line(...)`, etc.)
 
 ### How to run
 
-1. `yarn`
-2. `yarn dev`
+1. `npm install`
+2. `npm run dev`
 3. Go to `http://localhost:3000`
 
 ### Make a new sketch
